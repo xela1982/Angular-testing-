@@ -13,6 +13,8 @@ import { BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { MessagesComponent } from './messages/rx-js.messages.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsRegistrationModule } from './forms/forms.module';
 
 
 
@@ -21,7 +23,9 @@ import { MessagesComponent } from './messages/rx-js.messages.component';
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        appRoutingModule
+        FormsRegistrationModule,
+        appRoutingModule,
+        NgbModule
     ],
     declarations: [
         AppComponent,
