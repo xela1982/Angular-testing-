@@ -1,0 +1,13 @@
+<h3 appHighlight>Highlight Directive </h3>
+<div>
+    <input type="radio" name="colors" (click)="color='lightgreen'">Green
+    <input type="radio" name="colors" (click)="color='yellow'">Yellow
+    <input type="radio" name="colors" (click)="color='cyan'">Cyan
+</div>
+<p [appHighlightMouse]="color" defaultColor="green" (eventFire)="onMessage(event$)">
+    Highlight hostListener mouse enter
+</p>
+<app-decoration-sub (notifyParent)="onNotifyParent($event)"></app-decoration-sub>
+<br>
+<h3>Message in parent component </h3>
+<br>{{message}}

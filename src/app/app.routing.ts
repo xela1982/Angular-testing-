@@ -6,6 +6,7 @@ import { LoginComponent } from './login';
 import { AuthGuard } from './_helpers';
 import { ReactiveFormComponent } from './forms/reactive-form/reactive-form.component';
 import { TemplateFormComponent } from './forms/template-form/template-form.component';
+import { DecorationComponent } from './decoration/decoration.componenet';
 
 
 const routes: Routes = [
@@ -13,6 +14,8 @@ const routes: Routes = [
     { path: 'messages', component: MessagesComponent, canActivate: [AuthGuard] },
     { path: 'form/reactive', component: ReactiveFormComponent, canActivate: [AuthGuard] },
     { path: 'form/template', component: TemplateFormComponent, canActivate: [AuthGuard] },
+    { path: 'decoration', component: DecorationComponent, canActivate: [AuthGuard] },
+
     { path: 'login', component: LoginComponent },
 
     // otherwise redirect to home

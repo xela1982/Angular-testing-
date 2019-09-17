@@ -1,4 +1,5 @@
-﻿import { NgModule } from '@angular/core';
+﻿import { HighlightDirectiveMouseOver } from './_directives/highlight-mouse-over.directive';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -15,6 +16,11 @@ import { LoginComponent } from './login';
 import { MessagesComponent } from './messages/rx-js.messages.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsRegistrationModule } from './forms/forms.module';
+import { HighlightDirective } from './_directives/highlight.directive';
+import { ExponentialStrengthPipe } from './_pips/exponential-strength-pipe';
+import { DecorationComponent } from './decoration/decoration.componenet';;
+import { DecorationSubComponent } from './decoration/decoration-sub/decoration-sub.component'
+
 
 
 
@@ -31,7 +37,13 @@ import { FormsRegistrationModule } from './forms/forms.module';
         AppComponent,
         HomeComponent,
         LoginComponent,
-        MessagesComponent
+        MessagesComponent,
+        HighlightDirective,
+        HighlightDirectiveMouseOver,
+        ExponentialStrengthPipe,
+        DecorationComponent,
+        DecorationSubComponent
+
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
