@@ -1,38 +1,37 @@
+﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers';
 
 import { AppComponent } from './app.component';
-import { TemplateFormComponent } from './forms/template-form/template-form.component';
-import { MustMatchDirective } from './directives/must-match.directive';
-import { NgbdAlertCloseableModule } from './widgets/alert-closeable/alert-closeable.module';
-import { ReactiveFormComponent } from './forms/reactive-form/reactive-form.component';
+import { appRoutingModule } from './app.routing';
 
+import { BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
+import { HomeComponent } from './home';
+import { LoginComponent } from './login';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TemplateFormComponent,
-    ReactiveFormComponent,
-    MustMatchDirective
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        appRoutingModule
+    ],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        LoginComponent
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-  ],
-  imports: [
-    BrowserModule,
-    NgbdAlertCloseableModule,
-    RouterModule.forRoot(
-      [
-        { path: "form/template", component: TemplateFormComponent },
-        { path: "form/reactive", component: ReactiveFormComponent }
-
-      ]
-    ),
-    FormsModule,
-    ReactiveFormsModule
-
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+        // provider used to create fake backend
+        fakeBackendProvider
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
