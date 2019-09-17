@@ -70,6 +70,21 @@
                 <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
                 <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required</div>
             </div>
+            <div class="form-group form-check">
+                <div formArrayName="wifes">
+                    <h3>wifes</h3> <button type="button" (click)="onAddItems()">Add Items</button>
+                    <button type="button" (click)="onRead()">Read Value</button>
+                    <button type="button" (click)="onSetName()">Set Value</button>
+                    <div *ngFor="let item of myWifes.controls; let i=index">
+                        <label>
+                            Wife:
+                            <input type="text" [formControlName]="i">
+                        </label>
+                    </div>
+                </div>
+
+
+            </div>
             <div class="text-center">
                 <button class="btn btn-primary mr-1">Register</button>
                 <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>

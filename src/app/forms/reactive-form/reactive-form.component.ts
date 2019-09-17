@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { MustMatch } from '@app/_helpers/must-match.validator';
 
 // import custom validator to validate that password and confirm password fields match
@@ -25,7 +25,11 @@ export class ReactiveFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
-      acceptTerms: [false, Validators.requiredTrue]
+      acceptTerms: [false, Validators.requiredTrue],
+      wifes: this.formBuilder.array(
+        [
+          this.formBuilder.control('')
+        ])
     }, {
       validator: MustMatch('password', 'confirmPassword')
     });
@@ -33,7 +37,22 @@ export class ReactiveFormComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
-
+  get myWifes() {
+    return this.registerForm.get('wifes') as FormArray;
+  }
+  onRead() {
+    for (let item of this.myWifes.controls) {
+      console.log(item.value);
+    }
+  }
+  onSetName() {
+    for (let item of this.myWifes.controls) {
+      item.setValue(item.value + 'new value');
+    }
+  }
+  onAddItems() {
+    this.myWifes.push(this.formBuilder.control(''))
+  }
   onSubmit() {
     this.submitted = true;
 
@@ -51,4 +70,24 @@ export class ReactiveFormComponent implements OnInit {
     this.registerForm.reset();
   }
 
+
+  /*
+  singel 
+  onSetName() {
+      this.name.setValue('value was set');
+    }
+    onRead() {
+      var originalValue = this.name.value;
+      this.name.setValue(originalValue + 'new value');
+    }
+    Group
+     onSetName() {
+      this.formInfo.patchValue({ firstName: "new value" })
+    }
+    onRead() {
+      let firstName = this.formInfo.value["firstName"];
+      this.formInfo.patchValue({ firstName: firstName + "new value" })
+    }
+    
+    */
 }

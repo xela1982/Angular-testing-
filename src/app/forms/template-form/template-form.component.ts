@@ -11,4 +11,11 @@ export class TemplateFormComponent {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model, null, 4));
 
   }
+
+  /*   onSetName() {
+      this.fname = "alex";
+    }
+    onRead() {
+      this.fname = this.fname + "new";
+    } */
 }
