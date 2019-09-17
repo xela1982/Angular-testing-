@@ -1,0 +1,11 @@
+<!-- main app container -->
+<div class="container text-center my-3">
+    <div class="card mb-3">
+        <h4 class="card-header">Angular 8 Component Communication</h4>
+        <div class="card-body">
+            <button (click)="sendMessage()" class="btn btn-primary mr-2">Send Message</button>
+            <button (click)="clearMessages()" class="btn btn-secondary">Clear Messages</button>
+        </div>
+    </div>
+    <div *ngFor="let message of messages" class="alert alert-sm alert-info">{{message.text}}</div>
+</div>
