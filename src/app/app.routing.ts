@@ -1,4 +1,5 @@
-﻿import { MessagesComponent } from './messages/rx-js.messages.component';
+﻿import { WidgetsComponent } from './widgets/widgets.component';
+import { MessagesComponent } from './messages/rx-js.messages.component';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home';
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: 'form/reactive', component: ReactiveFormComponent, canActivate: [AuthGuard] },
     { path: 'form/template', component: TemplateFormComponent, canActivate: [AuthGuard] },
     { path: 'decoration', component: DecorationComponent, canActivate: [AuthGuard] },
+    { path: 'widgets', component: WidgetsComponent, canActivate: [AuthGuard] },
 
     { path: 'login', component: LoginComponent },
 

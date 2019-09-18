@@ -20,6 +20,9 @@ import { HighlightDirective } from './_directives/highlight.directive';
 import { ExponentialStrengthPipe } from './_pips/exponential-strength-pipe';
 import { DecorationComponent } from './decoration/decoration.componenet';;
 import { DecorationSubComponent } from './decoration/decoration-sub/decoration-sub.component'
+    ;
+import { WidgetsComponent } from './widgets/widgets.component'
+import { NgbdAlertCloseableModule } from './_widgets/alert-closeable/alert-closeable.module';
 
 
 
@@ -32,7 +35,8 @@ import { DecorationSubComponent } from './decoration/decoration-sub/decoration-s
         HttpClientModule,
         FormsRegistrationModule,
         appRoutingModule,
-        NgbModule
+        NgbModule,
+        NgbdAlertCloseableModule
     ],
     declarations: [
         AppComponent,
@@ -42,9 +46,9 @@ import { DecorationSubComponent } from './decoration/decoration-sub/decoration-s
         HighlightDirective,
         HighlightDirectiveMouseOver,
         ExponentialStrengthPipe,
-        DecorationComponent
-        ,
-        DecorationSubComponent
+        DecorationComponent,
+        DecorationSubComponent,
+        WidgetsComponent
 
     ],
     providers: [

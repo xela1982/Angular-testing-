@@ -5,7 +5,9 @@
         <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
         <button type="button" (click)="onAddUser()" class="btn">Add User</button>
         <ul *ngIf="users">
-            <li *ngFor="let user of users ">{{user.firstName}} {{user.lastName}}</li>
+            <li *ngFor="let user of users ">
+                {{user.firstName}} {{user.lastName}}
+            </li>
         </ul>
     </div>
 </div>
