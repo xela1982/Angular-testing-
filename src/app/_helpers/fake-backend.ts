@@ -1,4 +1,8 @@
-﻿import { Injectable } from '@angular/core';
+﻿/* An interceptor could skip calling next.handle(),
+short - circuit the chain, and return its own Observable with 
+an artificial server response. */
+
+import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
@@ -25,10 +29,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return authenticate();
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
+                case (method === 'GET'):
+                    let id = new URL(url).searchParams.get("id");
+                    return getUser(+id);
+                case (method === 'POST'):
+                    return ok(users)
+
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
-            }    
+            }
         }
 
         // route functions
@@ -48,6 +58,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function getUsers() {
             if (!isLoggedIn()) return unauthorized();
             return ok(users);
+        }
+        function getUser(id: number) {
+            if (!isLoggedIn()) return unauthorized();
+            let user = users.filter(x => x.id == id);
+            return ok(user);
         }
 
         // helper functions

@@ -24,6 +24,7 @@ import { DecorationSubComponent } from './decoration/decoration-sub/decoration-s
 
 
 
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -41,7 +42,8 @@ import { DecorationSubComponent } from './decoration/decoration-sub/decoration-s
         HighlightDirective,
         HighlightDirectiveMouseOver,
         ExponentialStrengthPipe,
-        DecorationComponent,
+        DecorationComponent
+        ,
         DecorationSubComponent
 
     ],
@@ -49,8 +51,10 @@ import { DecorationSubComponent } from './decoration/decoration-sub/decoration-s
         { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
+
         // provider used to create fake backend
         fakeBackendProvider
+
     ],
     bootstrap: [AppComponent]
 })

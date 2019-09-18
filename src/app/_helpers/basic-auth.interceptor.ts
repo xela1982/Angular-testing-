@@ -1,3 +1,5 @@
+
+
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -13,7 +15,7 @@ export class BasicAuthInterceptor implements HttpInterceptor {
         const currentUser = this.authenticationService.currentUserValue;
         if (currentUser && currentUser.authdata) {
             request = request.clone({
-                setHeaders: { 
+                setHeaders: {
                     Authorization: `Basic ${currentUser.authdata}`
                 }
             });
