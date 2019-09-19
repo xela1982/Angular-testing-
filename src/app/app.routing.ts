@@ -1,23 +1,28 @@
-﻿import { WidgetsComponent } from './widgets/widgets.component';
-import { MessagesComponent } from './messages/rx-js.messages.component';
+﻿
+
+
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home';
-import { LoginComponent } from './login';
-import { AuthGuard } from './_helpers';
-import { ReactiveFormComponent } from './forms/reactive-form/reactive-form.component';
-import { TemplateFormComponent } from './forms/template-form/template-form.component';
-import { DecorationComponent } from './decoration/decoration.componenet';
+
+import { AuthGuard } from './_guards/auth.guard';
+
+
+import { LoginComponent } from './login/login-index';
+import { UserList } from './user/user-components/user-list/user-list.component';
+import { UserResolverService } from './user/user-services/user-resolver.service';
+import { MessagesComponent } from './examples/examples-components/messages/messages-components/rx-js.messages.component';
+import { TemplateFormComponent } from './examples/examples-components/template-form/template-form.component';
+import { DecorationComponent } from './examples/examples-components/decoration/decoration-components/decoarion-main/decoration.componenet';
+import { UserRegiatraionForm } from './user/user-components/user-registraion-form/user-registraion-form.component';
 
 
 const routes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: '', component: UserList, canActivate: [AuthGuard], resolve: [UserResolverService] },
     { path: 'messages', component: MessagesComponent, canActivate: [AuthGuard] },
-    { path: 'form/reactive', component: ReactiveFormComponent, canActivate: [AuthGuard] },
-    { path: 'form/template', component: TemplateFormComponent, canActivate: [AuthGuard] },
-    { path: 'decoration', component: DecorationComponent, canActivate: [AuthGuard] },
-    { path: 'widgets', component: WidgetsComponent, canActivate: [AuthGuard] },
+    { path: 'form/reactive', component: UserRegiatraionForm, canActivate: [AuthGuard], resolve: [UserResolverService] },
+    { path: 'form/reactive/:id', component: UserRegiatraionForm, canActivate: [AuthGuard], resolve: [UserResolverService] },
 
+    { path: 'decoration', component: DecorationComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
 
     // otherwise redirect to home

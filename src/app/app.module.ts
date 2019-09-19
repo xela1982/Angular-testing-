@@ -1,28 +1,38 @@
-﻿import { HighlightDirectiveMouseOver } from './_directives/highlight-mouse-over.directive';
+﻿
+
+
+import { HighlightDirectiveMouseOver } from './_directives/highlight-mouse-over.directive';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers';
+
 
 import { AppComponent } from './app.component';
 import { appRoutingModule } from './app.routing';
 
-import { BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './home';
-import { LoginComponent } from './login';
-import { MessagesComponent } from './messages/rx-js.messages.component';
+
+
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsRegistrationModule } from './forms/forms.module';
+
 import { HighlightDirective } from './_directives/highlight.directive';
-import { ExponentialStrengthPipe } from './_pips/exponential-strength-pipe';
-import { DecorationComponent } from './decoration/decoration.componenet';;
-import { DecorationSubComponent } from './decoration/decoration-sub/decoration-sub.component'
-    ;
-import { WidgetsComponent } from './widgets/widgets.component'
+import { ExponentialStrengthPipe } from './_directives/_pips/exponential-strength-pipe';
 import { NgbdAlertCloseableModule } from './_widgets/alert-closeable/alert-closeable.module';
+
+import { LoginComponent } from './login/login-index';
+import { UserList } from './user/user-components/user-list/user-list.component';
+import { MessagesComponent } from './examples/examples-components/messages/messages-components/rx-js.messages.component';
+import { DecorationComponent } from './examples/examples-components/decoration/decoration-components/decoarion-main/decoration.componenet';
+import { DecorationSubComponent } from './examples/examples-components/decoration/decoration-components/decoration-sub/decoration-sub.component';
+import { BasicAuthInterceptor } from './_interceptors/basic-auth.interceptor';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { UserResolverService } from './user/user-services/user-resolver.service';
+import { TemplateFormComponent } from './examples/examples-components/template-form/template-form.component';
+import { UserRegiatraionForm } from './user/user-components/user-registraion-form/user-registraion-form.component';
+
 
 
 
@@ -33,14 +43,15 @@ import { NgbdAlertCloseableModule } from './_widgets/alert-closeable/alert-close
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        FormsRegistrationModule,
         appRoutingModule,
         NgbModule,
         NgbdAlertCloseableModule
+
+
     ],
     declarations: [
         AppComponent,
-        HomeComponent,
+        UserList,
         LoginComponent,
         MessagesComponent,
         HighlightDirective,
@@ -48,7 +59,8 @@ import { NgbdAlertCloseableModule } from './_widgets/alert-closeable/alert-close
         ExponentialStrengthPipe,
         DecorationComponent,
         DecorationSubComponent,
-        WidgetsComponent
+
+        UserRegiatraionForm
 
     ],
     providers: [
@@ -57,7 +69,8 @@ import { NgbdAlertCloseableModule } from './_widgets/alert-closeable/alert-close
 
 
         // provider used to create fake backend
-        fakeBackendProvider
+        UserResolverService
+
 
     ],
     bootstrap: [AppComponent]

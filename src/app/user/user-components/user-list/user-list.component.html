@@ -1,0 +1,45 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header">You're logged in with Angular 8 & Basic HTTP Authentication!!</h4>
+    <div class="card-body">
+        <h6>Users from secure api end point</h6>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <button type="button" (click)="onAddUser()" class="btn">Add User</button>
+        <ul *ngIf="users">
+            <li *ngFor="let user of users ">
+                <div class="row">
+                    <div class="col">
+                        <a routerLink="form/reactive/{{user.id}}">{{user.id}}</a>
+                    </div>
+                    <div class="col">
+                        {{user.username}}
+                    </div>
+                    <div class="col">
+                        {{user.password}}
+                    </div>
+                    <div class="col">
+                        {{user.firstName}}
+                    </div>
+                    <div class="col">
+                        {{user.lastName}}
+                    </div>
+                    <div class="col">
+                        {{user.email}}
+                    </div>
+                    <div class="col">
+                        {{user.title}}
+                    </div>
+                    <div class="col">
+                        {{user.acceptTerms}}
+                    </div>
+                    <div class="col">
+                        {{user.authdata}}
+                    </div>
+                    <div>
+                        <button (click)="onDelete()" type="button">Delete</button>
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+</div>
